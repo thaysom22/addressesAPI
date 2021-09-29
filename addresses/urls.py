@@ -4,6 +4,6 @@ from .views import (AddressRetrieveUpdateDestroy,
 
 
 urlpatterns = [
-    path('<int:pk>/', AddressRetrieveUpdateDestroy.as_view()),
+    path('<int:pk>/', AddressRetrieveUpdateDestroy.as_view(), name='address-detail'),
     path('current-user/', CurrentUserAddressListDestroyCreate.as_view()),
 ]

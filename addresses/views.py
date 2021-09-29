@@ -37,11 +37,11 @@ class CurrentUserAddressListDestroyCreate(generics.GenericAPIView):
         """
         Creates a new address instance associated with the current authenticated user
         """
-        address_data = request.data
-        # add the current user to payload for deserialization
-        address_data['user'] = request.user
-        serializer = self.get_serializer(data=address_data)
-        if serializer.is_valid:
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            # add the current user before creating object in DB
+            serializer.validated_data['user'] = request.user
+            print(serializer.validated_data)
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

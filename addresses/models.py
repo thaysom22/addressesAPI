@@ -26,4 +26,4 @@ class Address(models.Model):
             'city', 'region', 'postcode', 'country'] 
 
 	def __str__(self):
-		return f"{self.user}:{self.postcode}:{self.created_at}"
+		return f"id: {self.pk};  owner: {self.user}"
