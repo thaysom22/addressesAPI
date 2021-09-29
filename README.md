@@ -2,6 +2,12 @@
 
 An API built with Django Rest Framework for users to manage addresses
 
+### credentials for API authorization 
+
+**api v1 does not have user registration** please use the credentials provided for superuser and two example standard users
+
+see [credentials.md](./credentials.md)
+
 ### API endpoints
 
 * Django `admin.site.urls` endpoints are registered at `admin/` 
