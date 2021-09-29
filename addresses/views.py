@@ -1,10 +1,9 @@
 from rest_framework import (generics, status,
-    filters, permissions)
+    filters)
 from rest_framework.response import Response
-
 from .models import Address
 from .serializers import AddressSerializer
-from .permissions import CurrentUserIsOwner
+from .permissions import CurrentUserIsOwnerOrAdmin
 
 
 class CurrentUserAddressListDestroyCreate(generics.GenericAPIView):
@@ -71,7 +70,6 @@ class AddressRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     implementations via built-in mixins
     """ 
     queryset = Address.objects.all()
-    permissions_classes = [CurrentUserIsOwner|permissions.IsAdminUser]
+    permission_classes = [CurrentUserIsOwnerOrAdmin]
     serializer_class = AddressSerializer
     search_fields = ['address1', 'address2', 'city', 'region', 'postcode', 'country'] 
-    filter_backends = [filters.SearchFilter]
