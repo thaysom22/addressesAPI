@@ -4,6 +4,10 @@ An API built with Django Rest Framework for users to manage addresses
 
 ### API endpoints
 
+* Django `admin.site.urls` endpoints are registered at `admin/` 
+* DRF **browsable API** authentication `rest_framework.urls` (`login/` and `logout/`) endpoints are registered at `api-auth/`
+* 3rd party `rest-auth` package endpoints are registered at `api/v1/rest-auth/`. 
+
 (*not implemented for v1)
 
 | Endpoint | HTTP Verb | Details | Endpoint Permissions 

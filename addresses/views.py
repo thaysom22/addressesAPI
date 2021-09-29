@@ -9,7 +9,7 @@ from .permissions import CurrentUserIsOwner
 
 class CurrentUserAddressListDestroyCreate(generics.GenericAPIView):
     """
-    View to create address or to list or delete all addresses for current user
+    View to create address or to list or delete addresses belonging to current user
     with optional request query parameter filtering
     Methods allowed: GET, POST, DELETE
     """
@@ -41,7 +41,6 @@ class CurrentUserAddressListDestroyCreate(generics.GenericAPIView):
         if serializer.is_valid():
             # add the current user before creating object in DB
             serializer.validated_data['user'] = request.user
-            print(serializer.validated_data)
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
