@@ -26,8 +26,9 @@ class CurrentUserAddressListDestroyCreate(generics.GenericAPIView):
         current authenticated user
         """
         user_addresses = self.get_queryset()
-        if user_addresses.exists():
-            serializer = self.get_serializer(user_addresses, many=True)
+        filtered_addresses = self.filter_queryset(user_addresses)
+        if filtered_addresses.exists():
+            serializer = self.get_serializer(filtered_addresses, many=True)
             return Response(
                 serializer.data,
                 status=status.HTTP_200_OK)
@@ -51,9 +52,10 @@ class CurrentUserAddressListDestroyCreate(generics.GenericAPIView):
         associated with the current authenticated user
         """ 
         user_addresses = self.get_queryset()
-        if user_addresses.exists():
-            serializer = self.get_serializer(user_addresses, many=True)
-            count = user_addresses.delete()[0]
+        filtered_addresses = self.filter_queryset(user_addresses)
+        if filtered_addresses.exists():
+            serializer = self.get_serializer(filtered_addresses, many=True)
+            count = filtered_addresses.delete()[0]
             return Response(
                 {"count": count, "data": serializer.data}, 
                 status=status.HTTP_200_OK)
