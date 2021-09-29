@@ -1,0 +1,5 @@
+# local database
+*.sqlite3
+
+# db credentials
+credentials.md
