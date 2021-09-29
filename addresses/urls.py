@@ -1,9 +1,9 @@
 from django.urls import path
 from .views import (AddressRetrieveUpdateDestroy,
-    AddressListDestroyCreateCurrentUser)
+    CurrentUserAddressListDestroyCreate)
 
 
 urlpatterns = [
     path('', AddressRetrieveUpdateDestroy.as_view()),
-    path('current-user/', AddressListDestroyCreateCurrentUser.as_view()),
+    path('current-user/', CurrentUserAddressListDestroyCreate.as_view()),
 ]
